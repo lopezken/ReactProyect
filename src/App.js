@@ -1,6 +1,7 @@
 import './App.css';
-import Product from './Conponet/Product';
 import Navbar from './Conponet/Navbar';
+import Product from './Conponet/Products';
+
 
 function App() {
   return (

@@ -16,6 +16,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { AddShoppingCart } from '@material-ui/icons';
 //import MoreVertIcon from '@mui/icons-material/MoreVert';
 //import { ClassNames } from '@emotion/react';
+import accounting from "accounting"
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -28,7 +29,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function Product() {
+export default function Product({product: {id, name, productType, image, price, description}}) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -44,16 +45,16 @@ export default function Product() {
             variant='h5'
             color='textSecondary'
           >
-            {50}
+            {accounting.formatMoney(price,"$")}
           </Typography>
         }
-        title="Surface Laptop Go" 
+        title={name}
         subheader="Microsoft"
       />
       <CardMedia
         component="img"
         height="194"
-        image="https://m.media-amazon.com/images/I/61OvV27-44L._AC_SL1500_.jpg"
+        image={image}
         alt="Laptop Go"
       />
       <CardContent>
@@ -76,16 +77,9 @@ export default function Product() {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Sobre este artículo:</Typography>
-          <Typography paragraph>
-            Diseño elegante y valor destacado. Con tan solo 2.44 libras, es ligero, portátil y fácil de mantener a tu lado durante todo el día.
-            Sé productivo, navega y haz un reloj en la pantalla táctil PixelSense de 12.4 pulgadas.
-          </Typography>
-          <Typography paragraph>
-            Seguridad conveniente con el inicio de sesión de Windows Hola, además del botón de encendido de huellas dactilares con Windows Hello y One Touch para iniciar sesión en modelos seleccionados.
-            Ejecuta tus aplicaciones favoritas y mantente al día en las redes sociales con un procesador Intel Core de 10ª generación.
-            Muestra tu mejor lado en videollamadas, reuniones y reuniones virtuales con la cámara HD de 720p integrada.
-          </Typography>
+        <Typography>
+        {description}
+        </Typography>
         </CardContent>
       </Collapse>
     </Card>
