@@ -1,29 +1,55 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react'; //Acceder al Dom de react
 import './login.css';
-import {sendData} from 'gespro-utils/akiri';
+const URL_LOGIN = "http://localhost/webservices/login/login.php";
+
+//import {sendData} from 'gespro-utils/akiri';
+
+
+//Para mandar a validar los datos al servidor
+const enviarData = async (url, data)=>{
+
+const resp = await  fetch (url,{
+    method: 'POST',
+    body: JSON.stringify(data), //Convertir dato a texto
+    Headers:{
+      'content-Type':'application/json' // Valida que tipo de dato se esta mandando
+    }
+  });
+  
+  const json = await resp.json();
+  console.log(json);
+
+  return resp;
+
+}
 
 
 
+export default function Login(props) {
 
-
-export default function Login( props ) {
-    const [IsWait, setIsWait ]=useState(false);
     const [error, setError]=useState(null);
+    const [espera, setEspera]=useState(false);
 
     const refCorreo= useRef(null);
     const refClave= useRef(null);
 
+
+
+    //Obtiene la referencia del objeto correo y contraseña
     const handleLogin= async ()=> {
-        setIsWait(true)
+        setEspera(true)
         const data= {
             "usuario" : refCorreo.current.value,
             "clave": refClave.current.value
-        }
-        //console.log("datos a enviar", data);      
+        };           
 
-        const resp = await sendData (props.urlApi, data);
-        //console.log("respuesta del servidor:" , resp);        
-        setIsWait(false);
+
+        const resp = await enviarData (URL_LOGIN,data); //LLamamdos la constante y pedimos la URL y el data   
+        props.accerder(resp.conectado)
+        setError(resp.error)
+        
+        setEspera(false);
+
         resp.conectado && props.desbloquear(resp.conectado);                
         resp.error && setError(resp.error);
         
@@ -50,7 +76,7 @@ export default function Login( props ) {
                   className="form-control"
                   placeholder="Digite su correo"
                   aria-label="email"
-                  ref={refCorreo}
+                  ref={refCorreo} //Acceder a los datos, llamado desde la constante refCorreo
                   aria-describedby="spnCorreo"
                 />
               </div>
@@ -72,15 +98,18 @@ export default function Login( props ) {
               </div>
 
               {
-                  error && <div className="alert alert-danger" role="alert"> {error} </div>
+                error &&
+                <div className='alert alert-danger'>
+                  {error}
+                </div>
               }
-
+              
               <button 
-                className="btn btn-info btn-large btn-block"
                 onClick={handleLogin}
-                disabled={ IsWait  }
-                >
-                Acceder {IsWait && <span>⌛</span>  }
+                disabled={ espera  }
+                className="btn btn-info btn-large btn-block"
+                > 
+                Acceder {espera && <span>⌛</span>  }
               </button>
 
               <div className="card-footer">

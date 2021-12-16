@@ -8,7 +8,7 @@ function conectarDB(){
 
   $servidor = "localhost";
   $usuario = "root";
-  $password = "";
+  $password = "administrador";
   $bd = "prueba_login";
   
   

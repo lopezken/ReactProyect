@@ -1,34 +1,23 @@
-/* CODIGO PARA MANDAR A LLAMAR Navbar y Product
-import './App.css';
-import Product from './Conponet/Product';
-import Navbar from './Conponet/Navbar';
-
-function App() {
-  return (
-    <div className="App">
-      <Navbar/>
-      <Product/>
-    </div>
-  );
-}
-
-export default App;
-*/
-
-//import Login from './Conponet/Login/Login';
-//import Main from './Login/Main' ; 
-
+import { useState } from 'react'; //Para trabajar con estados de react
 import Login from './Login/Login'
+import Main from './Login/Main'
 const URL_API_LOGIN = "http://localhost/webservices/login/login.php";
 
 function App() {
+  const [conectado, seConectado ] = useState(false);
 
    //Resivimos el valor y lo imprimimos en consola
-  const desbloquear = (valor)=>{
-    console.log(valor);
+  const acceder = (valor)=>{
+    seConectado(valor);
   }
+  
+
+  //Funciona como condicional, si conecta nos manda a Mail, si no a Login
   return (
-    <Login urlApi={URL_API_LOGIN} desbloquear={desbloquear} />
+    conectado ?
+    <Main />
+    :
+    <Login urlApi={URL_API_LOGIN} acceder={acceder} />
   );
 }
 
