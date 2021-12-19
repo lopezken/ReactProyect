@@ -9,7 +9,7 @@ function conectarDB(){
   $servidor = "localhost";
   $usuario = "root";
   $password = "administrador";
-  $bd = "prueba_login";
+  $bd = "Ecommerce";
   
   
 

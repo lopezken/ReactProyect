@@ -4,20 +4,20 @@ import Main from './Login/Main'
 const URL_API_LOGIN = "http://localhost/webservices/login/login.php";
 
 function App() {
-  const [conectado, seConectado ] = useState(false);
+  const [desbloqueado, seDesbloquear ] = useState(false);
 
    //Resivimos el valor y lo imprimimos en consola
-  const acceder = (valor)=>{
-    seConectado(valor);
+  const desbloquear = (valor)=>{
+    console.log(valor);
+    seDesbloquear(valor);
   }
   
-
   //Funciona como condicional, si conecta nos manda a Mail, si no a Login
   return (
-    conectado ?
+    desbloqueado ?
     <Main />
     :
-    <Login urlApi={URL_API_LOGIN} acceder={acceder} />
+    <Login urlApi={URL_API_LOGIN} desbloquear={desbloquear} />
   );
 }
 
