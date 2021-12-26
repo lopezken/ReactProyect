@@ -11,7 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 //import { red } from '@mui/material/colors';
 //import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
+//import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { AddShoppingCart } from '@material-ui/icons';
 //import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -29,7 +29,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function Product({product: {id, name, productType, image, price, description}}) {
+export default function Product({product : {id,name, productType, image, price, description}}) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -49,7 +49,7 @@ export default function Product({product: {id, name, productType, image, price, 
           </Typography>
         }
         title={name}
-        subheader="Microsoft"
+        subheader={productType}
       />
       <CardMedia
         component="img"
