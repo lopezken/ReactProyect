@@ -2,13 +2,13 @@
 	include "conectar.php";
     $conn = conectarDB();
 	
-	$password= "456";
+	$password= "0123";
 	
 	
-	$usuario= "jose@correo.tic";
-	$nombre= "Jose";
-	$apellidos= "Jiménez Blanco";
-	$idTipoUsuario= "2";	
+	$usuario= "klopez";
+	$nombre= "Kenneth";
+	$apellidos= "Lopez";
+	$idTipoUsuario= "1";	
 	$clave = password_hash($password, PASSWORD_DEFAULT);
 	
 	echo $password;
