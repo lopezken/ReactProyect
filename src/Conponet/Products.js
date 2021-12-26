@@ -4,7 +4,7 @@ import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Product from './Product';
-import products from '../product-data';
+import products from '../Product-data';
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
@@ -29,3 +29,5 @@ export default function Products() {
     </div>
   );
 }
+
+
