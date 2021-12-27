@@ -1,9 +1,9 @@
 import { useState } from 'react'; //Para trabajar con estados de react
 import Login from './Login/Login';
-import Main from './Login/Main';
 import './App.css';
-import Navbar from './Conponet/Navbar';
-import Product from './Conponet/Products';
+import Newuser from './Login/Newuser';
+//import Navbar from './Conponet/Navbar';
+//import Product from './Conponet/Products';
 const URL_API_LOGIN = "http://localhost/webservices/login/login.php";
 
 
@@ -20,8 +20,7 @@ function App() {
   return (
     desbloqueado ?
     <div className="App">
-      <Navbar/>
-      <Product/>
+      <Newuser/>
     </div>
     :
     <Login urlApi={URL_API_LOGIN} desbloquear={desbloquear} />

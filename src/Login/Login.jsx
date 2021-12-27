@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import './login.css';
+import '../css/login.css';
 import {sendData} from 'gespro-utils/akiri';
 
 
@@ -86,6 +86,11 @@ export default function Login( props ) {
               <div className="card-footer">
                 ¿olvidó su contraseña? <a href="http://"> recuperar </a>
               </div>
+
+              <div className="card-footer">
+              Nuevo Usuario 
+              </div>
+
             </div>
           </div>
         </div>
